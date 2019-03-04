@@ -3,6 +3,7 @@
 ## Overview
 
 - Slack Bot for VM provisioning to vSphere
+  - Wrapper of vSphere API functions
 - User could use this software as portable interface of vSphere environment.
   - Interactive-operation with SlackBot
   - Operate with simple text format as Slack message
