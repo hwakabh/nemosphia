@@ -26,3 +26,20 @@
       - Case if you run programs permanently or run as background process, it would be preferable to run with `nohup` like below:
         - `nohup python ./run_bot &`
 
+
+## Configuration examples
+
+- By default, the file `env_config.json` is not included within this repository for the security reason.
+  - `API_TOKEN` would be taken from each of your slack channel and this token should keep secure.
+
+- Examples:
+  - Output of executing commands for confirm `cat ./env_config.json`
+
+```JSON
+{
+    "API_TOKEN" : "YOUR_API_TOKEN",
+    "VSPHERE_IP": "YOUR_VCENTER_IP_ADDRESS",
+    "VSPHERE_USERNAME": "administrator@vsphere.local",
+    "VSPHERE_PASSWORD": "VMware1!"
+}
+```
