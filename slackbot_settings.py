@@ -1,3 +1,4 @@
+import json
 
 '''
 User Configurations:
@@ -7,10 +8,9 @@ User Configurations:
     `VSPHERE_PASSWORD` : Set vSphere password
 '''
 
-API_TOKEN = "YOUR_SLACK_CHANNEL_TOKEN"
-VSPHERE_IP = 'YOUR_VSPHERE_IP_ADDRESS'
-VSPHERE_USERNAME = 'YOUR_VSPHERE_USERNAME'
-VSPHERE_PASSWORD = 'YOUR_VSPHERE_PASSWORD
+with open('./env_config.json') as f:
+    df = json.load(f)
 
+API_TOKEN = df['API_TOKEN']
 DEFAULT_REPLY = "Hello World from SlackBot !1"
 PLUGINS = ['plugins']

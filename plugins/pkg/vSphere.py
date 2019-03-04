@@ -6,9 +6,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class Vcenter:
     def __init__(self):
-        self.ipaddr = 'VSPHERE_IP'
-        self.username = 'VSPHERE_USER'
-        self.password = 'VSPHERE_PASS'
+        with open('./env_config.json') as f:
+            df = json.load(f)
+
+        self.ipaddr = df['VSPHERE_IP']
+        self.username = df['VSPHERE_USERNAME']
+        self.password = df['VSPHERE_PASSWORD']
 
     def get_token(self):
         uri = 'https://{0}/rest/com/vmware/cis/session'.format(self.ipaddr)
