@@ -32,6 +32,7 @@
 
 - By default, the file `env_config.json` is not included within this repository for the security reason.
   - `API_TOKEN` would be taken from each of your slack channel and this token should keep secure.
+  - To be first, create configuration files named `env_config.json` with executing command `touch ./env_config.json`
 
 - Examples:
   - Output of executing commands for confirm `cat ./env_config.json`
