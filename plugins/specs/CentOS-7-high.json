@@ -1,0 +1,49 @@
+{
+    "spec": {
+        "cdroms": [
+            {
+                "allow_guest_control": true,    
+                "backing": {
+                    "iso_file": "[SSD 1.3TB DS] iso/CentOS-7-x86_64-DVD-1708.iso",
+                    "type": "ISO_FILE"
+                },
+                "ide": {
+                    "master": true,
+                    "primary": true
+                },
+                "start_connected": true,
+                "type": "IDE"
+            }
+        ],
+        "guest_OS": "CENTOS_7_64",
+        "nics": [
+            {
+                "allow_guest_control": true,
+                "backing": {
+                    "network": "network-142",
+                    "type": "STANDARD_PORTGROUP"
+                        },
+                "start_connected": true,
+                "type": "VMXNET3",
+                "upt_compatibility_enabled": true,
+                "wake_on_lan_enabled": true
+            }
+        ],
+        "cpu" : {
+            "cores_per_socket": 2,
+            "count": 4,
+            "hot_add_enabled": true,
+            "hot_remove_enabled": true
+        },
+        "memory" : {
+            "hot_add_enabled": true,
+            "size_MiB": 8192
+        },
+        "placement": {
+            "cluster": "domain-c26",
+            "datastore": "datastore-226",
+            "folder": "group-v28",
+            "host": "host-139"
+        }
+    }
+}
