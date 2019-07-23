@@ -1,4 +1,4 @@
-# slack-vsphere
+# slackbot-vsphere
 
 ## Overview
 
