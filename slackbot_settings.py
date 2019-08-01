@@ -1,16 +1,10 @@
-import json
+import os
+import sys
 
-'''
-User Configurations:
-    `API_TOKEN` : Get/Set your slack channel API-Token
-    `VSPHERE_IP` : Set vSphere IP to be provisoned VMs
-    `VSPHERE_USERNAME` : Set vSphere username
-    `VSPHERE_PASSWORD` : Set vSphere password
-'''
+API_TOKEN = os.environ.get('API_TOKEN')
+if API_TOKEN == None:
+    print('>>> No API_TOKEN parameter configured, please use `export API_TOKEN="YOUR_TOKEN"` commands first.')
+    sys.exit('>>> Bot programs failed to run, exit')
 
-with open('./env_config.json') as f:
-    df = json.load(f)
-
-API_TOKEN = df['API_TOKEN']
-DEFAULT_REPLY = "Hello World from SlackBot !1"
+DEFAULT_REPLY = "Hello World from SlackBot !!"
 PLUGINS = ['plugins']
