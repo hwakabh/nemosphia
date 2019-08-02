@@ -91,3 +91,19 @@ class Vcenter:
             return None
         else:
             return r.text
+
+
+class VirtualMachine:
+    def __init__(self, vc):
+        self.vc = vc
+
+    def power_on(self, vmid):
+        uriprefix = '/vcenter/vm/{}/power/start'.format(vmid)
+        response = self.vc.https_post(uriprefix=uriprefix, data={})
+        return response
+
+    def power_off(self, vmid):
+        uriprefix = '/vcenter/vm/{}/power/stop'.format(vmid)
+        response = self.vc.https_post(uriprefix=uriprefix, data={})
+        return response
+
