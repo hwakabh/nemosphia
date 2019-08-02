@@ -7,9 +7,9 @@ import os
 import time
 import subprocess
 import json
-from .pkg.vSphere import Vcenter
+from .pkg.vSphere import VcEndpoint
 from .pkg.vSphere import VirtualMachine
-vc = Vcenter()
+vcapi = VcEndpoint()
 
 # ---- CRUD Implementation with vSphere RESTful-API
 def create_virtual_machine(vmname, vmspec):
@@ -20,19 +20,19 @@ def create_virtual_machine(vmname, vmspec):
     # add vmname to JSON post data
     spec_json['spec']['name'] = vmname
 
-    response = vc.https_post(uriprefix=uriprefix, data=spec_json)
+    response = vcapi.https_post(uriprefix=uriprefix, data=spec_json)
     return json.loads(response)
 
 
 def get_vm_list():
     uriprefix = '/vcenter/vm'
-    response = vc.https_get(uriprefix=uriprefix)
+    response = vcapi.https_get(uriprefix=uriprefix)
     return response
 
 
 def get_network():
     uriprefix = '/vcenter/network'
-    response = vc.https_get(uriprefix=uriprefix)
+    response = vcapi.https_get(uriprefix=uriprefix)
     return response
 
 
@@ -49,22 +49,9 @@ def find_network_id(netname):
         if net['name'] == netname:
             return net['network']
 
-
-# def power_on_vm(vmid):
-#     uriprefix = '/vcenter/vm/{}/power/start'.format(vmid)
-#     response = vc.https_post(uriprefix=uriprefix, data={})
-#     return response
-
-
-# def power_off_vm(vmid):
-#     uriprefix = '/vcenter/vm/{}/power/stop'.format(vmid)
-#     response = vc.https_post(uriprefix=uriprefix, data={})
-#     return response
-
-
 def destroy_vm(vmid):
     uriprefix = '/vcenter/vm/{}'.format(vmid)
-    response = vc.https_delete(uriprefix=uriprefix, data={})
+    response = vcapi.https_delete(uriprefix=uriprefix, data={})
     return response
 
 
@@ -141,8 +128,6 @@ def get_net_info(message):
             show_usage(message)
     else:
         message.reply('Do you mean `getvminfo` ??')
-
-
 
 
 @respond_to(r'^listallvms\.*')
@@ -245,7 +230,7 @@ def shutdown_vm(message):
         elif len(options) > 1:
             message.reply('Sorry, currently I can shutdown only one VM ...')
         else:
-            vm = VirtualMachine(vc=vc)
+            vm = VirtualMachine(vc=vcapi)
             vmname = options[0]
             message.reply('Okay, powering off your VM named [ {} ]'.format(vmname))
             vmid_to_shut = get_vm_id(vmname=vmname)
@@ -272,7 +257,7 @@ def start_vm(message):
         elif len(options) > 1:
             message.reply('Sorry, currently I can start only one VM ...')
         else:
-            vm = VirtualMachine(vc=vc)
+            vm = VirtualMachine(vc=vcapi)
             vmname = options[0]
             message.reply('Okay, powering on your VM named [ {} ]'.format(vmname))
             vmid_to_start = get_vm_id(vmname=vmname)

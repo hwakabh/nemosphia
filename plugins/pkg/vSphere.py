@@ -4,7 +4,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-class Vcenter:
+class VcEndpoint:
     def __init__(self):
         with open('./env_config.json') as f:
             df = json.load(f)
