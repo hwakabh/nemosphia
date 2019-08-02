@@ -6,4 +6,3 @@ venv/*
 log/*
 json/*
 .vscode/*
-env_config.json
