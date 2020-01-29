@@ -1,5 +1,0 @@
-{
-    "VSPHERE_IP": "vcsa-01a.corp.local",
-    "VSPHERE_USERNAME": "administrator@vsphere.local",
-    "VSPHERE_PASSWORD": "VMware1!"
-}

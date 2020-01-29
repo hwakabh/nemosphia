@@ -9,7 +9,17 @@ import subprocess
 import json
 from .pkg.vSphere import VcEndpoint
 from .pkg.vSphere import VirtualMachine
-vcapi = VcEndpoint()
+
+# Get vSphere credentials securely from environmental variables
+VC_IPADDR = os.environ.get('VSPHERE_IP')
+VC_USERNAME = os.environ.get('VSPHERE_USERNAME')
+VC_PASSWORD = os.environ.get('VSPHERE_PASSWORD')
+
+vcapi = VcEndpoint(
+    ip=VC_IPADDR,
+    user=VC_USERNAME,
+    passwd=VC_PASSWORD
+)
 
 # ---- CRUD Implementation with vSphere RESTful-API
 def create_virtual_machine(vmname, vmspec):

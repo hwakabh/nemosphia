@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 import urllib3
@@ -5,13 +6,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class VcEndpoint:
-    def __init__(self):
-        with open('./env_config.json') as f:
-            df = json.load(f)
-
-        self.ipaddr = df['VSPHERE_IP']
-        self.username = df['VSPHERE_USERNAME']
-        self.password = df['VSPHERE_PASSWORD']
+    def __init__(self, ip, user, passwd):
+        self.ipaddr = ip
+        self.username = user
+        self.password = passwd
 
     def get_token(self):
         uri = 'https://{0}/rest/com/vmware/cis/session'.format(self.ipaddr)
