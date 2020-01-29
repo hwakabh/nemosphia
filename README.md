@@ -11,7 +11,7 @@
 ## Prerequirements
 
 - Install required Python libraries
-  - `pip install -r requirements.txt`
+  - `pip3 install -r requirements.txt`
     - In case your environment uses `virtualenv`, start by creating virtual environments for this function first
     - Note that Python `slackbot` libraries will be installed for your environment, which are required to run this program.
 
