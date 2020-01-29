@@ -4,7 +4,7 @@
 
 - Slack Bot for VM provisioning to vSphere
   - Wrapper of vSphere API functions
-- User could use this software as portable interface of vSphere environment.
+- User can use this software as portable interface for vSphere environment
   - Interactive-operation with SlackBot
   - Operate with simple text format as Slack message
 
@@ -12,8 +12,8 @@
 
 - Install required Python libraries
   - `pip install -r requirements.txt`
-    - Case if your environment use `virtualenv`, start to create virtual environments for this function at first.
-    - Note that Python `slackbot` libraries would be installed for your environments, which mush be required to run this programs.
+    - In case your environment uses `virtualenv`, start by creating virtual environments for this function first
+    - Note that Python `slackbot` libraries will be installed for your environment, which are required to run this program.
 
 - Set your environmental variables
   - `export API_TOKEN="YOUR_SLACK_API_TOKEN"`
