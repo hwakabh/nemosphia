@@ -45,6 +45,8 @@
 - Case if you run programs permanently or run as background process, it would be preferable to run with `nohup` like below:
   - `nohup python3 ./run_bot &`
 
+## Environments
+
 ## Licensing
 
 - This programs is exported as open sources with the license of MIT License since sourced Python library `slackbot` is under the license.
