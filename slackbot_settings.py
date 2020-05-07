@@ -14,5 +14,30 @@ if API_TOKEN is None:
 else:
     print('done')
 
-# DEFAULT_REPLY = "Hello World from SlackBot !!"
+DEFAULT_REPLY = '''
+```
+Syntax : COMMAND [ARGS]
+    - getvminfo <NAME_OF_VM>
+    - getnetinfo <NAME_OF_VM>
+    - listallvms
+    - listallnets
+    - createvm <NAME_OF_VM> <VM_SPEC>
+    - deletevm <NAME_OF_VM>
+    - shutdownvm <NAME_OF_VM>
+    - startvm <NAME_OF_VM>
+
+Each VM_SPEC would be defined as:
+  - high
+    - 2 Core per Socket / 4 vCPU
+    - 8 GiB vRAM
+  - mid
+    - 2 Core per Socket / 2 vCPU
+    - 4 GiB vRAM
+  - low
+    - 1 Core per Socket / 1 vCPU
+    - 1 GiB vRAM
+    - NOTE: If no VM_SPEC parameters was provided, Lowest spec VM would be createda
+```
+'''
+
 PLUGINS = ['plugins']
