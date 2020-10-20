@@ -4,16 +4,33 @@ from slackbot.bot import listen_to
 from slackbot.bot import default_reply
 
 import os
+import sys
 import time
 import subprocess
 import json
 from .pkg.vSphere import VcEndpoint
 from .pkg.vSphere import VirtualMachine
 
-# Get vSphere credentials securely from environmental variables
-VC_IPADDR = os.environ.get('VSPHERE_IP')
-VC_USERNAME = os.environ.get('VSPHERE_USERNAME')
-VC_PASSWORD = os.environ.get('VSPHERE_PASSWORD')
+# Fetch all dependencies
+VC_IPADDR = os.environ.get('VC_IPADDR')
+VC_USERNAME = os.environ.get('VC_USERNAME')
+VC_PASSWORD = os.environ.get('VC_PASSWORD')
+# Application specific authentication, after base auth with API_TOKEN
+print('--->>> Prechecking vSphere credentials')
+if (VC_IPADDR is None) or (VC_USERNAME is None) or (VC_PASSWORD is None):
+    print('No vSphere credentials provided.')
+    print('Confirm the parameters have been configured properly with environmental variables like:')
+    print('    export VC_IPADDR=\'vcsa01.mylab.local\'')
+    print('    export VC_USERNAME=\'administrator@vsphere.local\'')
+    print('    export VC_PASSWORD=\'VMware1!\'')
+    sys.exit(1)
+else:
+    print('done')
+
+print()
+print('>>> Completed initializing, start to run bot.')
+print('    vCenter Server connected: {}'.format(VC_IPADDR))
+print('    Log in as : {}'.format(VC_USERNAME))
 
 vcapi = VcEndpoint(
     ip=VC_IPADDR,
@@ -316,3 +333,44 @@ def get_help(message):
 @respond_to(r'^thank\.*|^Thank\.*')
 def reply_to_thanks(message):
     message.reply('My pleasure, thank you too.')
+
+@respond_to(r'showoptions')
+def show_options(message):
+    URL = 'https://slack.com/api/chat.postMessage'
+    message.reply('POST to {}'.format(URL))
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer {}'.format(os.environ.get('API_TOKEN'))
+        }
+    import requests
+    import json
+    body = [{
+        'text': 'SOME ZOOooooo',
+        'attachment_type': 'default',
+        'callback_id': 'the_greatest_war',
+        'actions': [
+            {
+                'name': 'PANDA',
+                'text': 'panda',
+                'value': 'panda-choise',
+                'type': 'button'
+            },
+            {
+                'name': 'DUCK',
+                'text': 'duck',
+                'value': 'duck-choise',
+                'type': 'button'
+            }
+        ]
+    }]
+    payload = {
+        'channel': 'GFKQURXDE',
+        'username': 'AUTOBOT',
+        'attachments': json.dumps(body)
+    }
+
+    r = requests.post(URL, headers=headers, data=json.dumps(payload), verify=False)
+    print(r.text)
+    r = requests.get('http://localhost:/slack/json_html')
+    print(r.text)

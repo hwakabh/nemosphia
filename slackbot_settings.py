@@ -14,7 +14,7 @@ if API_TOKEN is None:
 else:
     print('done')
 
-DEFAULT_REPLY = '''
+DEFAULT_REPLY = '''Hello User, here's my usage.
 ```
 Syntax : COMMAND [ARGS]
     - getvminfo <NAME_OF_VM>
